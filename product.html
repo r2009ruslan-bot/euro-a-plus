@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ka">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EURO A PLUS — Товар</title>
+    <title>EURO A PLUS — პროდუქტი</title>
     <style>
         :root { --dark-blue: #0a1f3f; --navy: #0d2b52; --white: #fff; --light-gray: #f5f5f5; --border: #d0d7e2; --gold: #ffd54f; --red: #e74c3c; --heart-red: #ff2d55; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -61,7 +61,7 @@
         .modal-total { font-weight: 700; font-size: 18px; margin-top: 12px; text-align: right; color: var(--dark-blue); }
 
         .footer { background: var(--dark-blue); color: #ccc; padding: 32px 0 20px; margin-top: 40px; }
-        .footer .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px; }
+        .footer .container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
         .footer h4 { color: var(--white); }
         .footer a { color: #bbb; }
         .footer-bottom { text-align: center; font-size: 11px; color: #999; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); }
@@ -69,6 +69,7 @@
         @media (max-width: 768px) {
             .product-detail { grid-template-columns: 1fr; }
             .product-img-wrapper { min-height: 250px; }
+            .footer .container { grid-template-columns: 1fr; text-align: center; }
         }
     </style>
 </head>
@@ -76,15 +77,15 @@
 
     <div class="top-bar">
         <div class="container">
-            <a href="index.html">← <span data-lang-key="back_to_shop">Вернуться в магазин</span></a>
+            <a href="index.html">← <span data-lang-key="back_to_shop">მაღაზიაში დაბრუნება</span></a>
             <div class="lang-switcher" id="langSwitcher">
-                <button class="lang-btn active" data-lang="ru"><svg width="20" height="14"><rect width="20" height="14" fill="#fff"/><rect y="4.67" width="20" height="4.67" fill="#0039a6"/><rect y="9.33" width="20" height="4.67" fill="#d52b1e"/></svg></button>
-                <button class="lang-btn" data-lang="en"><svg width="20" height="14"><rect width="20" height="14" fill="#012169"/><line x1="0" y1="0" x2="20" y2="14" stroke="#fff" stroke-width="3"/><line x1="20" y1="0" x2="0" y2="14" stroke="#fff" stroke-width="3"/></svg></button>
-                <button class="lang-btn" data-lang="ka"><svg width="20" height="14"><rect width="20" height="14" fill="#fff"/><line x1="10" y1="0" x2="10" y2="14" stroke="#ff0000" stroke-width="2"/><line x1="0" y1="7" x2="20" y2="7" stroke="#ff0000" stroke-width="2"/></svg></button>
-                <button class="lang-btn" data-lang="tr"><svg width="20" height="14"><rect width="20" height="14" fill="#e30a17"/><circle cx="8" cy="7" r="3" fill="#fff"/><circle cx="9" cy="7" r="2" fill="#e30a17"/></svg></button>
-                <button class="lang-btn" data-lang="az"><svg width="20" height="14"><rect width="20" height="4.67" fill="#00b9e4"/><rect y="4.67" width="20" height="4.67" fill="#ed2939"/><rect y="9.33" width="20" height="4.67" fill="#3f9e4d"/></svg></button>
-                <button class="lang-btn" data-lang="fa"><svg width="20" height="14"><rect width="20" height="4.67" fill="#239f40"/><rect y="4.67" width="20" height="4.67" fill="#fff"/><rect y="9.33" width="20" height="4.67" fill="#da0000"/></svg></button>
-                <button class="lang-btn" data-lang="zh"><svg width="20" height="14"><rect width="20" height="14" fill="#ee1c25"/><polygon points="10,2 12,5 15,6 12.5,8.5 13,12 10,10 7,12 7.5,8.5 5,6 8,5" fill="#ffff00"/></svg></button>
+                <button class="lang-btn" data-lang="ru"><svg width="22" height="14" viewBox="0 0 22 14"><rect width="22" height="4.67" fill="#fff"/><rect y="4.67" width="22" height="4.67" fill="#0039a6"/><rect y="9.33" width="22" height="4.67" fill="#d52b1e"/></svg></button>
+                <button class="lang-btn" data-lang="en"><svg width="22" height="14" viewBox="0 0 22 14"><rect width="22" height="14" fill="#012169"/><path d="M0 0L22 14M22 0L0 14" stroke="#fff" stroke-width="3"/><path d="M0 0L22 14M22 0L0 14" stroke="#c8102e" stroke-width="1.5"/><rect x="9" width="4" height="14" fill="#fff"/><rect x="10" width="2" height="14" fill="#c8102e"/><rect y="5" width="22" height="4" fill="#fff"/><rect y="6" width="22" height="2" fill="#c8102e"/></svg></button>
+                <button class="lang-btn active" data-lang="ka"><svg width="22" height="14" viewBox="0 0 22 14"><rect width="22" height="14" fill="#fff"/><rect y="5" width="22" height="4" fill="#ff0000"/><rect x="9" width="4" height="14" fill="#ff0000"/><rect x="5" y="2" width="4" height="4" fill="#ff0000"/><rect x="13" y="2" width="4" height="4" fill="#ff0000"/><rect x="5" y="8" width="4" height="4" fill="#ff0000"/><rect x="13" y="8" width="4" height="4" fill="#ff0000"/></svg></button>
+                <button class="lang-btn" data-lang="tr"><svg width="22" height="14" viewBox="0 0 22 14"><rect width="22" height="14" fill="#e30a17"/><circle cx="9" cy="7" r="3.5" fill="#fff"/><circle cx="10" cy="7" r="2.7" fill="#e30a17"/><polygon points="13,4 15,7 13,10 16.5,7" fill="#fff"/></svg></button>
+                <button class="lang-btn" data-lang="az"><svg width="22" height="14" viewBox="0 0 22 14"><rect width="22" height="4.67" fill="#00b9e4"/><rect y="4.67" width="22" height="4.67" fill="#ed2939"/><rect y="9.33" width="22" height="4.67" fill="#3f9e4d"/><circle cx="11" cy="7" r="2" fill="#fff"/></svg></button>
+                <button class="lang-btn" data-lang="fa"><svg width="22" height="14" viewBox="0 0 22 14"><rect width="22" height="4.67" fill="#239f40"/><rect y="4.67" width="22" height="4.67" fill="#fff"/><rect y="9.33" width="22" height="4.67" fill="#da0000"/></svg></button>
+                <button class="lang-btn" data-lang="zh"><svg width="22" height="14" viewBox="0 0 22 14"><rect width="22" height="14" fill="#ee1c25"/><circle cx="7" cy="4" r="1.5" fill="#ffff00"/><circle cx="11" cy="3.5" r="0.8" fill="#ffff00"/><circle cx="11" cy="6" r="0.8" fill="#ffff00"/><circle cx="11" cy="8.5" r="0.8" fill="#ffff00"/><circle cx="11" cy="11" r="0.8" fill="#ffff00"/></svg></button>
             </div>
         </div>
     </div>
@@ -93,14 +94,14 @@
         <div class="container">
             <a href="index.html" class="logo">EURO<span> A </span>PLUS</a>
             <div class="header-icons">
-                <span id="favIcon">❤️ <span data-lang-key="favorites">Избранное</span><span class="badge" id="favBadge"></span></span>
-                <span id="cartIcon">🛒 <span data-lang-key="cart">Корзина</span><span class="badge" id="cartBadge"></span></span>
+                <span id="favIcon">❤️ <span data-lang-key="favorites">რჩეულები</span><span class="badge" id="favBadge"></span></span>
+                <span id="cartIcon">🛒 <span data-lang-key="cart">კალათა</span><span class="badge" id="cartBadge"></span></span>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <div class="breadcrumbs"><a href="index.html">EURO A PLUS</a> / <span id="breadcrumbName">Товар</span></div>
+        <div class="breadcrumbs"><a href="index.html">EURO A PLUS</a> / <span id="breadcrumbName">პროდუქტი</span></div>
         <div class="product-detail">
             <div class="product-img-wrapper"><img id="productImg" src="" alt=""></div>
             <div class="product-detail-info">
@@ -109,11 +110,11 @@
                 <div class="product-detail-price" id="productPrice"></div>
                 <div class="product-detail-old-price" id="productOldPrice"></div>
                 <div class="product-detail-buttons">
-                    <button class="btn btn-cart" id="addToCartBtn">🛒 <span data-lang-key="add_to_cart">В корзину</span></button>
-                    <button class="btn btn-fav" id="addToFavBtn">❤️ <span data-lang-key="add_to_fav">В избранное</span></button>
+                    <button class="btn btn-cart" id="addToCartBtn">🛒 <span data-lang-key="add_to_cart">კალათაში</span></button>
+                    <button class="btn btn-fav" id="addToFavBtn">❤️ <span data-lang-key="add_to_fav">რჩეულებში</span></button>
                 </div>
-                <div class="product-description"><h3 data-lang-key="description_title">Описание</h3><p id="productDescription"></p></div>
-                <a href="index.html" class="btn-back">← <span data-lang-key="back_to_shop">Вернуться в магазин</span></a>
+                <div class="product-description"><h3 data-lang-key="description_title">აღწერა</h3><p id="productDescription"></p></div>
+                <a href="index.html" class="btn-back">← <span data-lang-key="back_to_shop">მაღაზიაში დაბრუნება</span></a>
             </div>
         </div>
     </div>
@@ -124,11 +125,10 @@
 
     <div class="footer">
         <div class="container">
-            <div><h4>EURO A PLUS</h4><p>Плитка в Грузии</p><p>г. Тбилиси, ул. Руставели, 45</p><p>📞 +995 555 12 34 56</p></div>
-            <div><h4>Каталог</h4><a href="#">Плитки</a></div>
-            <div><h4>Покупателям</h4><a href="#">Оплата и доставка</a><a href="#">Возврат</a><a href="#">Контакты</a></div>
+            <div><h4>EURO A PLUS</h4><p>ფილები საქართველოში</p><p>თბილისი, რუსთაველის გამზ., 45</p><p>📞 +995 555 12 34 56</p></div>
+            <div><h4>მომხმარებლებისთვის</h4><a href="contacts.html">კონტაქტები</a></div>
         </div>
-        <div class="footer-bottom">&copy; 2026 EURO A PLUS. Все права защищены.</div>
+        <div class="footer-bottom">&copy; 2026 EURO A PLUS. ყველა უფლება დაცულია.</div>
     </div>
 
     <script src="app.js"></script>
