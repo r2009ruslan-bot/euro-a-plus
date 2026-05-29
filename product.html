@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EURO A PLUS — Товар</title>
+    <style>
+        :root { --dark-blue: #0a1f3f; --navy: #0d2b52; --white: #fff; --light-gray: #f5f5f5; --border: #d0d7e2; --gold: #ffd54f; --red: #e74c3c; --heart-red: #ff2d55; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light-gray); color: #222; line-height: 1.5; min-width: 320px; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 14px; }
+
+        .top-bar { background: #f0f0f0; font-size: 13px; padding: 6px 0; border-bottom: 1px solid #ddd; }
+        .top-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .top-bar a { color: #444; font-size: 12px; padding: 2px 6px; border-radius: 3px; }
+        .lang-switcher { display: flex; gap: 4px; background: #e8e8e8; border-radius: 8px; padding: 3px 4px; }
+        .lang-btn { background: transparent; border: none; padding: 6px 8px; cursor: pointer; border-radius: 5px; display: flex; align-items: center; }
+        .lang-btn svg { display: block; border-radius: 2px; }
+        .lang-btn.active { background: var(--dark-blue); }
+
+        .header { background: var(--dark-blue); color: var(--white); padding: 10px 0; }
+        .header .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .logo { font-size: 22px; font-weight: 800; color: var(--white); }
+        .logo span { color: var(--gold); }
+        .header-icons { display: flex; gap: 10px; font-size: 13px; }
+        .header-icons span { cursor: pointer; padding: 5px 8px; border-radius: 4px; position: relative; }
+        .badge { position: absolute; top: -4px; right: -6px; background: var(--red); color: #fff; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .badge:empty { display: none; }
+
+        .breadcrumbs { padding: 14px 0; font-size: 13px; color: #888; }
+        .breadcrumbs a { color: var(--dark-blue); }
+
+        .product-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; background: var(--white); border-radius: 14px; padding: 28px; margin-bottom: 30px; }
+        .product-img-wrapper { display: flex; align-items: center; justify-content: center; background: #fafbfc; border-radius: 14px; padding: 20px; min-height: 350px; }
+        .product-img-wrapper img { width: 100%; height: auto; max-height: 450px; object-fit: contain; border-radius: 8px; }
+        .product-detail-info h1 { font-size: 26px; font-weight: 800; color: var(--dark-blue); margin-bottom: 10px; }
+        .product-detail-specs { font-size: 14px; color: #666; margin-bottom: 14px; }
+        .product-detail-price { font-size: 28px; font-weight: 800; color: var(--dark-blue); }
+        .product-detail-old-price { font-size: 16px; color: #999; text-decoration: line-through; margin-bottom: 20px; }
+        .product-detail-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+        .btn { padding: 12px 20px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; border: none; }
+        .btn-cart { background: var(--dark-blue); color: #fff; flex: 1; min-width: 150px; }
+        .btn-fav { background: #fff; color: var(--heart-red); border: 2px solid var(--heart-red); flex: 1; min-width: 150px; }
+        .btn-back { background: #fff; color: var(--dark-blue); border: 2px solid var(--dark-blue); padding: 10px 18px; display: inline-block; margin-top: 16px; border-radius: 8px; }
+        .product-description { font-size: 14px; color: #555; line-height: 1.8; border-top: 1px solid #eee; padding-top: 18px; }
+        .product-description h3 { color: var(--dark-blue); margin-bottom: 10px; font-size: 18px; }
+
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; justify-content: center; align-items: center; }
+        .modal-overlay.active { display: flex; }
+        .modal { background: #fff; border-radius: 12px; padding: 24px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; }
+        .modal-close { position: absolute; top: 12px; right: 16px; font-size: 24px; cursor: pointer; background: none; border: none; }
+        .modal-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .modal-item img { width: 60px; height: 60px; object-fit: contain; border-radius: 6px; }
+        .modal-item-name { font-weight: 700; }
+        .modal-item-price { color: var(--dark-blue); font-weight: 700; }
+        .modal-remove-btn { background: #e74c3c; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+        .modal-empty { text-align: center; padding: 30px; color: #999; }
+        .modal-total { font-weight: 700; font-size: 18px; margin-top: 12px; text-align: right; color: var(--dark-blue); }
+
+        .footer { background: var(--dark-blue); color: #ccc; padding: 32px 0 20px; margin-top: 40px; }
+        .footer .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px; }
+        .footer h4 { color: var(--white); }
+        .footer a { color: #bbb; }
+        .footer-bottom { text-align: center; font-size: 11px; color: #999; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        @media (max-width: 768px) {
+            .product-detail { grid-template-columns: 1fr; }
+            .product-img-wrapper { min-height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container">
+            <a href="index.html">← <span data-lang-key="back_to_shop">Вернуться в магазин</span></a>
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-btn active" data-lang="ru"><svg width="20" height="14"><rect width="20" height="14" fill="#fff"/><rect y="4.67" width="20" height="4.67" fill="#0039a6"/><rect y="9.33" width="20" height="4.67" fill="#d52b1e"/></svg></button>
+                <button class="lang-btn" data-lang="en"><svg width="20" height="14"><rect width="20" height="14" fill="#012169"/><line x1="0" y1="0" x2="20" y2="14" stroke="#fff" stroke-width="3"/><line x1="20" y1="0" x2="0" y2="14" stroke="#fff" stroke-width="3"/></svg></button>
+                <button class="lang-btn" data-lang="ka"><svg width="20" height="14"><rect width="20" height="14" fill="#fff"/><line x1="10" y1="0" x2="10" y2="14" stroke="#ff0000" stroke-width="2"/><line x1="0" y1="7" x2="20" y2="7" stroke="#ff0000" stroke-width="2"/></svg></button>
+                <button class="lang-btn" data-lang="tr"><svg width="20" height="14"><rect width="20" height="14" fill="#e30a17"/><circle cx="8" cy="7" r="3" fill="#fff"/><circle cx="9" cy="7" r="2" fill="#e30a17"/></svg></button>
+                <button class="lang-btn" data-lang="az"><svg width="20" height="14"><rect width="20" height="4.67" fill="#00b9e4"/><rect y="4.67" width="20" height="4.67" fill="#ed2939"/><rect y="9.33" width="20" height="4.67" fill="#3f9e4d"/></svg></button>
+                <button class="lang-btn" data-lang="fa"><svg width="20" height="14"><rect width="20" height="4.67" fill="#239f40"/><rect y="4.67" width="20" height="4.67" fill="#fff"/><rect y="9.33" width="20" height="4.67" fill="#da0000"/></svg></button>
+                <button class="lang-btn" data-lang="zh"><svg width="20" height="14"><rect width="20" height="14" fill="#ee1c25"/><polygon points="10,2 12,5 15,6 12.5,8.5 13,12 10,10 7,12 7.5,8.5 5,6 8,5" fill="#ffff00"/></svg></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="container">
+            <a href="index.html" class="logo">EURO<span> A </span>PLUS</a>
+            <div class="header-icons">
+                <span id="favIcon">❤️ <span data-lang-key="favorites">Избранное</span><span class="badge" id="favBadge"></span></span>
+                <span id="cartIcon">🛒 <span data-lang-key="cart">Корзина</span><span class="badge" id="cartBadge"></span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumbs"><a href="index.html">EURO A PLUS</a> / <span id="breadcrumbName">Товар</span></div>
+        <div class="product-detail">
+            <div class="product-img-wrapper"><img id="productImg" src="" alt=""></div>
+            <div class="product-detail-info">
+                <h1 id="productName"></h1>
+                <div class="product-detail-specs" id="productSpecs"></div>
+                <div class="product-detail-price" id="productPrice"></div>
+                <div class="product-detail-old-price" id="productOldPrice"></div>
+                <div class="product-detail-buttons">
+                    <button class="btn btn-cart" id="addToCartBtn">🛒 <span data-lang-key="add_to_cart">В корзину</span></button>
+                    <button class="btn btn-fav" id="addToFavBtn">❤️ <span data-lang-key="add_to_fav">В избранное</span></button>
+                </div>
+                <div class="product-description"><h3 data-lang-key="description_title">Описание</h3><p id="productDescription"></p></div>
+                <a href="index.html" class="btn-back">← <span data-lang-key="back_to_shop">Вернуться в магазин</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal"><button class="modal-close" id="modalClose">&times;</button><h3 id="modalTitle"></h3><div id="modalItems"></div><div class="modal-total" id="modalTotal" style="display:none;"></div></div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div><h4>EURO A PLUS</h4><p>Плитка в Грузии</p><p>г. Тбилиси, ул. Руставели, 45</p><p>📞 +995 555 12 34 56</p></div>
+            <div><h4>Каталог</h4><a href="#">Плитки</a></div>
+            <div><h4>Покупателям</h4><a href="#">Оплата и доставка</a><a href="#">Возврат</a><a href="#">Контакты</a></div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 EURO A PLUS. Все права защищены.</div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
